@@ -30,7 +30,30 @@ DISPATCHER = {'VNIR': DISPATCHER_VNIR,
               'SWIR': DISPATCHER_SWIR}
 
 
-def probav_hdf5_reader(fname, dataset, camera='VNIR'):
+def probav_toc_hdf5_reader(fname, dataset, camera='VNIR'):
+    '''
+
+    :param fname: your filename
+    :param dataset: the name of the dataset you want to load (raiometry or geometry). PROBA-V TOC
+    files provide the following datasets:
+        * VNIR camera:
+                BLUE
+                RED
+                NIR
+                VZA
+                VAA
+                SAA
+                SAA
+        * SWIR camera:
+                SWIR
+                VZA
+                VAA
+                SZA
+                SAA
+    Note: SZA and SZA are the same for both cameras.
+    :param camera: VNIR or SWIR
+    :return: numpy array with the dataset loaded, dictionary with scaling info
+    '''
     print(f'loading {dataset} for {camera} camera')
     scaling_info = {}
     try:
